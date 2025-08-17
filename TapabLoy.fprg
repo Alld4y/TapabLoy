@@ -1,0 +1,468 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="TapabLoy"/>
+        <attribute name="authors" value="Allday"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2568-08-17 02:59:21 PM"/>
+        <attribute name="created" value="QWxsZGF5O0FMTERBWTsyNTY4LTA4LTE3OzEyOjMwOjM0IEFNOzIzMTc="/>
+        <attribute name="edited" value="QWxsZGF5O0FMTERBWTsyNTY4LTA4LTE3OzAyOjU5OjIxIFBNOzM7MjQ0OA=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="drink" type="String" array="True" size="4"/>
+            <declare name="snack" type="String" array="True" size="3"/>
+            <declare name="drinkPrice" type="Integer" array="True" size="4"/>
+            <declare name="snackPrice" type="Integer" array="True" size="3"/>
+            <declare name="moneyType" type="Integer" array="True" size="9"/>
+            <call expression="moneyTypeInit(moneyType)"/>
+            <call expression="productInit(drink,snack,drinkPrice,snackPrice)"/>
+            <while expression="true">
+                <output expression="&quot;&#3619;&#3634;&#3618;&#3585;&#3634;&#3619;&#3626;&#3636;&#3609;&#3588;&#3657;&#3634;&quot;" newline="True"/>
+                <declare name="index" type="Integer" array="False" size=""/>
+                <for variable="index" start="0" end="3" direction="inc" step="1">
+                    <output expression="index+1" newline="False"/>
+                    <output expression="&quot; : &quot;" newline="False"/>
+                    <output expression="drink[index]" newline="False"/>
+                    <output expression="&quot; &quot;" newline="False"/>
+                    <output expression="&quot;&#3619;&#3634;&#3588;&#3634;&quot;" newline="False"/>
+                    <output expression="&quot; &quot;" newline="False"/>
+                    <output expression="drinkPrice[index]" newline="False"/>
+                    <output expression="&quot; &quot;" newline="False"/>
+                    <output expression="&quot;&#3610;&#3634;&#3607;&quot;" newline="True"/>
+                </for>
+                <for variable="index" start="0" end="2" direction="inc" step="1">
+                    <output expression="index+5" newline="False"/>
+                    <output expression="&quot; : &quot;" newline="False"/>
+                    <output expression="snack[index]" newline="False"/>
+                    <output expression="&quot; &quot;" newline="False"/>
+                    <output expression="&quot;&#3619;&#3634;&#3588;&#3634;&quot;" newline="False"/>
+                    <output expression="&quot; &quot;" newline="False"/>
+                    <output expression="snackPrice[index]" newline="False"/>
+                    <output expression="&quot; &quot;" newline="False"/>
+                    <output expression="&quot;&#3610;&#3634;&#3607;&quot;" newline="True"/>
+                </for>
+                <declare name="select" type="Integer" array="False" size=""/>
+                <declare name="basket" type="Integer" array="True" size="50"/>
+                <declare name="isSelecting" type="Boolean" array="False" size=""/>
+                <output expression="&quot;&#3650;&#3611;&#3619;&#3604;&#3648;&#3621;&#3639;&#3629;&#3585;&#3619;&#3634;&#3618;&#3585;&#3634;&#3619;&#3626;&#3636;&#3609;&#3588;&#3657;&#3634;&#3605;&#3634;&#3617;&#3619;&#3627;&#3633;&#3626;&#3626;&#3636;&#3609;&#3588;&#3657;&#3634; &#3648;&#3617;&#3639;&#3656;&#3629;&#3648;&#3626;&#3619;&#3655;&#3592;&#3626;&#3636;&#3657;&#3609;&#3614;&#3636;&#3617;&#3614;&#3660; 99 &#3648;&#3614;&#3639;&#3656;&#3629;&#3618;&#3639;&#3609;&#3618;&#3633;&#3609;&#3585;&#3634;&#3619;&#3648;&#3621;&#3639;&#3629;&#3585;&quot;" newline="True"/>
+                <declare name="indexBasket" type="Integer" array="False" size=""/>
+                <assign variable="indexBasket" expression="0"/>
+                <assign variable="isSelecting" expression="true"/>
+                <while expression="isSelecting">
+                    <input variable="select"/>
+                    <if expression="select &gt; 7 or select &lt;= 0">
+                        <then>
+                            <if expression="select == 99">
+                                <then>
+                                    <assign variable="isSelecting" expression="false"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;&#3652;&#3617;&#3656;&#3617;&#3637;&#3626;&#3636;&#3609;&#3588;&#3657;&#3634;&#3619;&#3627;&#3633;&#3626; &quot;" newline="False"/>
+                                    <output expression="select" newline="True"/>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <assign variable="basket[indexBasket]" expression="select"/>
+                            <assign variable="indexBasket" expression="indexBasket+1"/>
+                            <output expression="&quot;&#3648;&#3621;&#3639;&#3629;&#3585; &quot;" newline="False"/>
+                            <if expression="select &gt; 4">
+                                <then>
+                                    <output expression="snack[select-5]" newline="True"/>
+                                </then>
+                                <else>
+                                    <output expression="drink[select-1]" newline="True"/>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </while>
+                <output expression="&quot;&#3619;&#3634;&#3618;&#3585;&#3634;&#3619;&#3626;&#3636;&#3609;&#3588;&#3657;&#3634;&#3607;&#3637;&#3656;&#3648;&#3621;&#3639;&#3629;&#3585;&quot;" newline="True"/>
+                <declare name="totalPrice" type="Integer" array="False" size=""/>
+                <assign variable="totalPrice" expression="0"/>
+                <for variable="index" start="0" end="indexBasket-1" direction="inc" step="1">
+                    <if expression="basket[index]&gt;4">
+                        <then>
+                            <output expression="snack[basket[index]-5]" newline="False"/>
+                            <output expression="&quot; &#3619;&#3634;&#3588;&#3634; &quot;" newline="False"/>
+                            <assign variable="totalPrice" expression="totalPrice+snackPrice[basket[index]-5]"/>
+                            <output expression="snackPrice[basket[index]-5]" newline="False"/>
+                            <output expression="&quot; &#3610;&#3634;&#3607;&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="drink[basket[index]-1]" newline="False"/>
+                            <output expression="&quot; &#3619;&#3634;&#3588;&#3634; &quot;" newline="False"/>
+                            <assign variable="totalPrice" expression="totalPrice+drinkPrice[basket[index]-1]"/>
+                            <output expression="drinkPrice[basket[index]-1]" newline="False"/>
+                            <output expression="&quot; &#3610;&#3634;&#3607;&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </for>
+                <output expression="&quot;&#3619;&#3623;&#3617;&#3648;&#3611;&#3655;&#3609;&#3648;&#3591;&#3636;&#3609; &quot;" newline="False"/>
+                <output expression="totalPrice" newline="False"/>
+                <output expression="&quot; &#3610;&#3634;&#3607;&quot;" newline="True"/>
+                <output expression="&quot;&#3650;&#3611;&#3619;&#3604;&#3651;&#3626;&#3656;&#3648;&#3591;&#3636;&#3609;&#3605;&#3634;&#3617;&#3592;&#3635;&#3609;&#3623;&#3609;&#3619;&#3634;&#3588;&#3634;&#3626;&#3636;&#3609;&#3588;&#3657;&#3634;&quot;" newline="True"/>
+                <declare name="totalMoneyPutIn" type="Integer" array="False" size=""/>
+                <assign variable="totalMoneyPutIn" expression="0"/>
+                <while expression="totalPrice &gt; totalMoneyPutIn">
+                    <declare name="moneyPutIn" type="Integer" array="False" size=""/>
+                    <assign variable="moneyPutIn" expression="0"/>
+                    <input variable="moneyPutIn"/>
+                    <if expression="(moneyPutIn == 1 or moneyPutIn == 2 or moneyPutIn == 5 or moneyPutIn == 10 or moneyPutIn == 20 or moneyPutIn == 50 or moneyPutIn == 100 or moneyPutIn == 500 or moneyPutIn == 1000)">
+                        <then>
+                            <if expression="(moneyPutIn-(totalPrice-totalMoneyPutIn))&lt;100">
+                                <then>
+                                    <if expression="moneyPutIn == 1">
+                                        <then>
+                                            <assign variable="moneyType[0]" expression="moneyType[0]+1"/>
+                                            <assign variable="totalMoneyPutIn" expression="totalMoneyPutIn+1"/>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                    <if expression="moneyPutIn == 2">
+                                        <then>
+                                            <assign variable="moneyType[1]" expression="moneyType[1]+1"/>
+                                            <assign variable="totalMoneyPutIn" expression="totalMoneyPutIn+2"/>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                    <if expression="moneyPutIn == 5">
+                                        <then>
+                                            <assign variable="moneyType[2]" expression="moneyType[2]+1"/>
+                                            <assign variable="totalMoneyPutIn" expression="totalMoneyPutIn+5"/>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                    <if expression="moneyPutIn == 10">
+                                        <then>
+                                            <assign variable="moneyType[3]" expression="moneyType[3]+1"/>
+                                            <assign variable="totalMoneyPutIn" expression="totalMoneyPutIn+10"/>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                    <if expression="moneyPutIn == 20">
+                                        <then>
+                                            <assign variable="moneyType[4]" expression="moneyType[4]+1"/>
+                                            <assign variable="totalMoneyPutIn" expression="totalMoneyPutIn+20"/>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                    <if expression="moneyPutIn == 50">
+                                        <then>
+                                            <assign variable="moneyType[5]" expression="moneyType[5]+1"/>
+                                            <assign variable="totalMoneyPutIn" expression="totalMoneyPutIn+50"/>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                    <if expression="moneyPutIn == 100">
+                                        <then>
+                                            <assign variable="moneyType[6]" expression="moneyType[6]+1"/>
+                                            <assign variable="totalMoneyPutIn" expression="totalMoneyPutIn+100"/>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                    <if expression="moneyPutIn == 500">
+                                        <then>
+                                            <assign variable="moneyType[7]" expression="moneyType[7]+1"/>
+                                            <assign variable="totalMoneyPutIn" expression="totalMoneyPutIn+500"/>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                    <if expression="moneyPutIn == 1000">
+                                        <then>
+                                            <assign variable="moneyType[8]" expression="moneyType[8]+1"/>
+                                            <assign variable="totalMoneyPutIn" expression="totalMoneyPutIn+1000"/>
+                                        </then>
+                                        <else/>
+                                    </if>
+                                    <output expression="&quot;&#3651;&#3626;&#3656;&#3648;&#3591;&#3636;&#3609;&#3652;&#3611;&#3649;&#3621;&#3657;&#3623; &quot;" newline="False"/>
+                                    <output expression="totalMoneyPutIn" newline="False"/>
+                                    <output expression="&quot; &#3610;&#3634;&#3607;&quot;" newline="True"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;&#3650;&#3611;&#3619;&#3604;&#3651;&#3626;&#3656;&#3648;&#3591;&#3636;&#3609;&#3651;&#3627;&#3657;&#3652;&#3617;&#3656;&#3648;&#3585;&#3636;&#3609;&#3619;&#3634;&#3588;&#3634;&#3626;&#3636;&#3609;&#3588;&#3657;&#3634; &#3648;&#3588;&#3619;&#3639;&#3656;&#3629;&#3591;&#3607;&#3629;&#3609;&#3652;&#3604;&#3657;&#3652;&#3617;&#3656;&#3648;&#3585;&#3636;&#3609; 100 &#3610;&#3634;&#3607;&quot;" newline="True"/>
+                                </else>
+                            </if>
+                        </then>
+                        <else>
+                            <output expression="&quot;&#3617;&#3633;&#3609;&#3617;&#3637;&#3611;&#3656;&#3634;&#3623;&#3588;&#3633;&#3610;&#3614;&#3637;&#3656; .. &#3649;&#3610;&#3591;&#3588;&#3660; &quot;" newline="False"/>
+                            <output expression="moneyPutIn" newline="False"/>
+                            <output expression="&quot; &#3610;&#3634;&#3607;&#3629;&#3632;&quot;" newline="True"/>
+                        </else>
+                    </if>
+                    <if expression="(totalMoneyPutIn - totalPrice) &lt; 0">
+                        <then>
+                            <output expression="&quot;&#3650;&#3611;&#3619;&#3604;&#3651;&#3626;&#3656;&#3648;&#3591;&#3636;&#3609;&#3648;&#3614;&#3636;&#3656;&#3617; &quot;" newline="False"/>
+                            <output expression="totalPrice-totalMoneyPutIn" newline="False"/>
+                            <output expression="&quot; &#3610;&#3634;&#3607;&quot;" newline="True"/>
+                        </then>
+                        <else/>
+                    </if>
+                </while>
+                <declare name="change" type="Integer" array="False" size=""/>
+                <assign variable="change" expression="totalMoneyPutIn - totalPrice"/>
+                <declare name="changeType" type="Integer" array="True" size="9"/>
+                <call expression="changeTypeInit(changeType)"/>
+                <output expression="&quot;&#3607;&#3629;&#3609;&#3648;&#3591;&#3636;&#3609; &quot;" newline="False"/>
+                <output expression="change" newline="False"/>
+                <output expression="&quot; &#3610;&#3634;&#3607;&quot;" newline="True"/>
+                <while expression="change != 0">
+                    <if expression="(change / 1000) &gt;= 1 and moneyType[8] &gt; 0">
+                        <then>
+                            <assign variable="change" expression="change-1000"/>
+                            <assign variable="moneyType[8]" expression="moneyType[8] - 1"/>
+                            <assign variable="changeType[8]" expression="changeType[8] + 1"/>
+                        </then>
+                        <else>
+                            <if expression="(change / 500) &gt;= 1 and moneyType[7] &gt; 0">
+                                <then>
+                                    <assign variable="change" expression="change-500"/>
+                                    <assign variable="moneyType[7]" expression="moneyType[7] - 1"/>
+                                    <assign variable="changeType[7]" expression="changeType[7] + 1"/>
+                                </then>
+                                <else>
+                                    <if expression="(change / 100) &gt;= 1 and moneyType[6] &gt; 0">
+                                        <then>
+                                            <assign variable="change" expression="change-100"/>
+                                            <assign variable="moneyType[6]" expression="moneyType[6] - 1"/>
+                                            <assign variable="changeType[6]" expression="changeType[6] + 1"/>
+                                        </then>
+                                        <else>
+                                            <if expression="(change / 50) &gt;= 1 and moneyType[5] &gt; 0">
+                                                <then>
+                                                    <assign variable="change" expression="change-50"/>
+                                                    <assign variable="moneyType[5]" expression="moneyType[5] - 1"/>
+                                                    <assign variable="changeType[5]" expression="changeType[5] + 1"/>
+                                                </then>
+                                                <else>
+                                                    <if expression="(change/20) &gt;= 1 and moneyType[4] &gt; 0">
+                                                        <then>
+                                                            <assign variable="change" expression="change-20"/>
+                                                            <assign variable="moneyType[4]" expression="moneyType[4] - 1"/>
+                                                            <assign variable="changeType[4]" expression="changeType[4] + 1"/>
+                                                        </then>
+                                                        <else>
+                                                            <if expression="(change / 10) &gt;= 1 and moneyType[3] &gt; 0">
+                                                                <then>
+                                                                    <assign variable="change" expression="change-10"/>
+                                                                    <assign variable="moneyType[3]" expression="moneyType[3] - 1"/>
+                                                                    <assign variable="changeType[3]" expression="changeType[3] + 1"/>
+                                                                </then>
+                                                                <else>
+                                                                    <if expression="(change/5) &gt;= 1 and moneyType[2] &gt; 0">
+                                                                        <then>
+                                                                            <assign variable="change" expression="change-5"/>
+                                                                            <assign variable="moneyType[2]" expression="moneyType[2] - 1"/>
+                                                                            <assign variable="changeType[2]" expression="changeType[2] + 1"/>
+                                                                        </then>
+                                                                        <else>
+                                                                            <if expression="(change / 2) &gt;= 1 and moneyType[1] &gt; 0">
+                                                                                <then>
+                                                                                    <assign variable="change" expression="change-2"/>
+                                                                                    <assign variable="moneyType[1]" expression="moneyType[1] - 1"/>
+                                                                                    <assign variable="changeType[1]" expression="changeType[1] + 1"/>
+                                                                                </then>
+                                                                                <else>
+                                                                                    <if expression="(change/1) &gt;= 1 and moneyType[0] &gt; 0">
+                                                                                        <then>
+                                                                                            <assign variable="change" expression="change-1"/>
+                                                                                            <assign variable="moneyType[0]" expression="moneyType[0] - 1"/>
+                                                                                            <assign variable="changeType[0]" expression="changeType[0] + 1"/>
+                                                                                        </then>
+                                                                                        <else>
+                                                                                            <declare name="i" type="String" array="False" size=""/>
+                                                                                            <output expression="&quot;Error &#3652;&#3617;&#3656;&#3617;&#3637;&#3648;&#3591;&#3636;&#3609;&#3607;&#3629;&#3609;&quot;" newline="True"/>
+                                                                                            <input variable="i"/>
+                                                                                        </else>
+                                                                                    </if>
+                                                                                </else>
+                                                                            </if>
+                                                                        </else>
+                                                                    </if>
+                                                                </else>
+                                                            </if>
+                                                        </else>
+                                                    </if>
+                                                </else>
+                                            </if>
+                                        </else>
+                                    </if>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </while>
+                <if expression="changeType[8] &gt; 0">
+                    <then>
+                        <output expression="&quot;&#3607;&#3629;&#3609;&#3648;&#3591;&#3636;&#3609;&#3649;&#3610;&#3591;&#3588;&#3660; 1000 &#3610;&#3634;&#3607; &#3592;&#3635;&#3609;&#3623;&#3609; &quot;" newline="False"/>
+                        <output expression="changeType[8]" newline="False"/>
+                        <output expression="&quot; &#3651;&#3610;&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="changeType[7] &gt; 0">
+                    <then>
+                        <output expression="&quot;&#3607;&#3629;&#3609;&#3648;&#3591;&#3636;&#3609;&#3649;&#3610;&#3591;&#3588;&#3660; 500 &#3610;&#3634;&#3607; &#3592;&#3635;&#3609;&#3623;&#3609; &quot;" newline="False"/>
+                        <output expression="changeType[7]" newline="False"/>
+                        <output expression="&quot; &#3651;&#3610;&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="changeType[6] &gt; 0">
+                    <then>
+                        <output expression="&quot;&#3607;&#3629;&#3609;&#3648;&#3591;&#3636;&#3609;&#3649;&#3610;&#3591;&#3588;&#3660; 100 &#3610;&#3634;&#3607; &#3592;&#3635;&#3609;&#3623;&#3609; &quot;" newline="False"/>
+                        <output expression="changeType[6]" newline="False"/>
+                        <output expression="&quot; &#3651;&#3610;&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="changeType[5] &gt; 0">
+                    <then>
+                        <output expression="&quot;&#3607;&#3629;&#3609;&#3648;&#3591;&#3636;&#3609;&#3649;&#3610;&#3591;&#3588;&#3660; 50 &#3610;&#3634;&#3607; &#3592;&#3635;&#3609;&#3623;&#3609; &quot;" newline="False"/>
+                        <output expression="changeType[5]" newline="False"/>
+                        <output expression="&quot; &#3651;&#3610;&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="changeType[4] &gt; 0">
+                    <then>
+                        <output expression="&quot;&#3607;&#3629;&#3609;&#3648;&#3591;&#3636;&#3609;&#3649;&#3610;&#3591;&#3588;&#3660; 20 &#3610;&#3634;&#3607; &#3592;&#3635;&#3609;&#3623;&#3609; &quot;" newline="False"/>
+                        <output expression="changeType[4]" newline="False"/>
+                        <output expression="&quot; &#3651;&#3610;&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="changeType[3] &gt; 0">
+                    <then>
+                        <output expression="&quot;&#3607;&#3629;&#3609;&#3648;&#3591;&#3636;&#3609;&#3648;&#3627;&#3619;&#3637;&#3618;&#3597; 10 &#3610;&#3634;&#3607; &#3592;&#3635;&#3609;&#3623;&#3609; &quot;" newline="False"/>
+                        <output expression="changeType[3]" newline="False"/>
+                        <output expression="&quot; &#3648;&#3627;&#3619;&#3637;&#3618;&#3597;&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="changeType[2] &gt; 0">
+                    <then>
+                        <output expression="&quot;&#3607;&#3629;&#3609;&#3648;&#3591;&#3636;&#3609;&#3648;&#3627;&#3619;&#3637;&#3618;&#3597; 5 &#3610;&#3634;&#3607; &#3592;&#3635;&#3609;&#3623;&#3609; &quot;" newline="False"/>
+                        <output expression="changeType[2]" newline="False"/>
+                        <output expression="&quot; &#3648;&#3627;&#3619;&#3637;&#3618;&#3597;&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="changeType[1] &gt; 0">
+                    <then>
+                        <output expression="&quot;&#3607;&#3629;&#3609;&#3648;&#3591;&#3636;&#3609;&#3648;&#3627;&#3619;&#3637;&#3618;&#3597; 2 &#3610;&#3634;&#3607; &#3592;&#3635;&#3609;&#3623;&#3609; &quot;" newline="False"/>
+                        <output expression="changeType[1]" newline="False"/>
+                        <output expression="&quot; &#3648;&#3627;&#3619;&#3637;&#3618;&#3597;&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+                <if expression="changeType[0] &gt; 0">
+                    <then>
+                        <output expression="&quot;&#3607;&#3629;&#3609;&#3648;&#3591;&#3636;&#3609;&#3648;&#3627;&#3619;&#3637;&#3618;&#3597; 1 &#3610;&#3634;&#3607; &#3592;&#3635;&#3609;&#3623;&#3609; &quot;" newline="False"/>
+                        <output expression="changeType[0]" newline="False"/>
+                        <output expression="&quot; &#3648;&#3627;&#3619;&#3637;&#3618;&#3597;&quot;" newline="True"/>
+                    </then>
+                    <else/>
+                </if>
+                <output expression="&quot;&#3586;&#3629;&#3610;&#3588;&#3640;&#3603;&#3607;&#3637;&#3656;&#3651;&#3594;&#3657;&#3610;&#3619;&#3636;&#3585;&#3634;&#3619;&#3605;&#3632;&#3614;&#3634;&#3610;&#3621;&#3629;&#3618;&quot;" newline="True"/>
+                <declare name="success" type="String" array="False" size=""/>
+                <output expression="&quot;&#3585;&#3604; 99 &#3648;&#3614;&#3639;&#3656;&#3629;&#3604;&#3641;&#3619;&#3634;&#3618;&#3585;&#3634;&#3619;&#3648;&#3627;&#3619;&#3637;&#3618;&#3597;&#3651;&#3609;&#3605;&#3641;&#3657;&quot;" newline="True"/>
+                <input variable="success"/>
+                <if expression="success == &quot;99&quot;">
+                    <then>
+                        <output expression="&quot;&#3592;&#3635;&#3609;&#3623;&#3609;&#3608;&#3609;&#3610;&#3633;&#3605;&#3619;&#3649;&#3621;&#3632;&#3648;&#3627;&#3619;&#3637;&#3618;&#3597;&#3607;&#3637;&#3656;&#3648;&#3627;&#3621;&#3639;&#3629;&#3651;&#3609;&#3605;&#3641;&#3657;&quot;" newline="True"/>
+                        <output expression="&quot;&#3608;&#3609;&#3610;&#3633;&#3605;&#3619; 1000 &#3610;&#3634;&#3607; : &quot;" newline="False"/>
+                        <output expression="moneyType[8]" newline="False"/>
+                        <output expression="&quot; &#3651;&#3610;&quot;" newline="True"/>
+                        <output expression="&quot;&#3608;&#3609;&#3610;&#3633;&#3605;&#3619; 500 &#3610;&#3634;&#3607; : &quot;" newline="False"/>
+                        <output expression="moneyType[7]" newline="False"/>
+                        <output expression="&quot; &#3651;&#3610;&quot;" newline="True"/>
+                        <output expression="&quot;&#3608;&#3609;&#3610;&#3633;&#3605;&#3619; 100 &#3610;&#3634;&#3607; : &quot;" newline="False"/>
+                        <output expression="moneyType[6]" newline="False"/>
+                        <output expression="&quot; &#3651;&#3610;&quot;" newline="True"/>
+                        <output expression="&quot;&#3608;&#3609;&#3610;&#3633;&#3605;&#3619; 50 &#3610;&#3634;&#3607; : &quot;" newline="False"/>
+                        <output expression="moneyType[5]" newline="False"/>
+                        <output expression="&quot; &#3651;&#3610;&quot;" newline="True"/>
+                        <output expression="&quot;&#3608;&#3609;&#3610;&#3633;&#3605;&#3619; 20 &#3610;&#3634;&#3607; : &quot;" newline="False"/>
+                        <output expression="moneyType[4]" newline="False"/>
+                        <output expression="&quot; &#3651;&#3610;&quot;" newline="True"/>
+                        <output expression="&quot;&#3648;&#3627;&#3619;&#3637;&#3618;&#3597; 10 &#3610;&#3634;&#3607; : &quot;" newline="False"/>
+                        <output expression="moneyType[3]" newline="False"/>
+                        <output expression="&quot; &#3648;&#3627;&#3619;&#3637;&#3618;&#3597;&quot;" newline="True"/>
+                        <output expression="&quot;&#3648;&#3627;&#3619;&#3637;&#3618;&#3597; 5 &#3610;&#3634;&#3607; : &quot;" newline="False"/>
+                        <output expression="moneyType[2]" newline="False"/>
+                        <output expression="&quot; &#3648;&#3627;&#3619;&#3637;&#3618;&#3597;&quot;" newline="True"/>
+                        <output expression="&quot;&#3648;&#3627;&#3619;&#3637;&#3618;&#3597; 2 &#3610;&#3634;&#3607; : &quot;" newline="False"/>
+                        <output expression="moneyType[1]" newline="False"/>
+                        <output expression="&quot; &#3648;&#3627;&#3619;&#3637;&#3618;&#3597;&quot;" newline="True"/>
+                        <output expression="&quot;&#3648;&#3627;&#3619;&#3637;&#3618;&#3597; 1 &#3610;&#3634;&#3607; : &quot;" newline="False"/>
+                        <output expression="moneyType[0]" newline="False"/>
+                        <output expression="&quot; &#3648;&#3627;&#3619;&#3637;&#3618;&#3597;&quot;" newline="True"/>
+                        <assign variable="success" expression="&quot;&quot;"/>
+                    </then>
+                    <else/>
+                </if>
+                <output expression="&quot;&#3585;&#3604; Enter &#3648;&#3614;&#3639;&#3656;&#3629;&#3648;&#3619;&#3636;&#3656;&#3617;&#3605;&#3657;&#3609;&#3651;&#3627;&#3617;&#3656;&quot;" newline="True"/>
+                <input variable="success"/>
+            </while>
+        </body>
+    </function>
+    <function name="changeTypeInit" type="None" variable="">
+        <parameters>
+            <parameter name="changeType" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <assign variable="changeType[0]" expression="0"/>
+            <assign variable="changeType[1]" expression="0"/>
+            <assign variable="changeType[2]" expression="0"/>
+            <assign variable="changeType[3]" expression="0"/>
+            <assign variable="changeType[4]" expression="0"/>
+            <assign variable="changeType[5]" expression="0"/>
+            <assign variable="changeType[6]" expression="0"/>
+            <assign variable="changeType[7]" expression="0"/>
+            <assign variable="changeType[8]" expression="0"/>
+        </body>
+    </function>
+    <function name="moneyTypeInit" type="None" variable="">
+        <parameters>
+            <parameter name="moneyType" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <assign variable="moneyType[0]" expression="500"/>
+            <assign variable="moneyType[1]" expression="0"/>
+            <assign variable="moneyType[2]" expression="300"/>
+            <assign variable="moneyType[3]" expression="300"/>
+            <assign variable="moneyType[4]" expression="100"/>
+            <assign variable="moneyType[5]" expression="20"/>
+            <assign variable="moneyType[6]" expression="20"/>
+            <assign variable="moneyType[7]" expression="3"/>
+            <assign variable="moneyType[8]" expression="1"/>
+        </body>
+    </function>
+    <function name="productInit" type="None" variable="">
+        <parameters>
+            <parameter name="drink" type="String" array="True"/>
+            <parameter name="snack" type="String" array="True"/>
+            <parameter name="drinkPrice" type="Integer" array="True"/>
+            <parameter name="snackPrice" type="Integer" array="True"/>
+        </parameters>
+        <body>
+            <assign variable="drink[0]" expression="&quot;&#3650;&#3588;&#3657;&#3585;&quot;"/>
+            <assign variable="drink[1]" expression="&quot;&#3609;&#3657;&#3635;&#3648;&#3586;&#3637;&#3618;&#3623;&quot;"/>
+            <assign variable="drink[2]" expression="&quot;&#3629;&#3648;&#3617;&#3619;&#3636;&#3585;&#3634;&#3650;&#3609;&#3656;&quot;"/>
+            <assign variable="drink[3]" expression="&quot;&#3621;&#3634;&#3648;&#3605;&#3657;&#3627;&#3623;&#3634;&#3609;&#3648;&#3592;&#3637;&#3657;&#3618;&#3610;&quot;"/>
+            <assign variable="snack[0]" expression="&quot;&#3648;&#3617;&#3621;&#3655;&#3604;&#3607;&#3634;&#3609;&#3605;&#3632;&#3623;&#3633;&#3609;&quot;"/>
+            <assign variable="snack[1]" expression="&quot;&#3606;&#3633;&#3656;&#3623;&#3649;&#3611;&#3610;&quot;"/>
+            <assign variable="snack[2]" expression="&quot;&#3592;&#3636;&#3657;&#3609;&#3626;&#3657;&#3617;&#3627;&#3617;&#3585;&quot;"/>
+            <assign variable="drinkPrice[0]" expression="10"/>
+            <assign variable="drinkPrice[1]" expression="12"/>
+            <assign variable="drinkPrice[2]" expression="30"/>
+            <assign variable="drinkPrice[3]" expression="35"/>
+            <assign variable="snackPrice[0]" expression="13"/>
+            <assign variable="snackPrice[1]" expression="20"/>
+            <assign variable="snackPrice[2]" expression="15"/>
+        </body>
+    </function>
+</flowgorithm>
